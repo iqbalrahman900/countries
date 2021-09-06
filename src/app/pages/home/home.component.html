@@ -1,0 +1,121 @@
+
+<div class="warpper">
+  <input class="radio" id="one" name="group" type="radio" checked>
+  <input class="radio" id="two" name="group" type="radio">
+  <input class="radio" id="three" name="group" type="radio">
+  <div class="tabs" style="display: inline-block;">
+  <label class="tab" id="one-tab" for="one">Country</label>
+  <label class="tab" id="two-tab" for="two">Graph</label>
+ 
+    </div>
+  <div class="panels">
+    <div class="panel" id="one-panel">
+      <section class="container" style="margin: 10px">
+      
+       
+          <div class="country-filters">
+            <div class="search-filter shadow" style="display: inline-block;height: 23px;">
+              <span class="fa fa-search"></span>
+              <input style="width: 80%;"
+                type="text"
+                placeholder="Search for a country..."
+                [(ngModel)]="searchFilter"
+              />
+            </div>
+          
+            <app-dropdown
+              placeholder="Filter by Region"
+              [values]="regionOptions"
+              [(value)]="regionFilter"
+            ></app-dropdown>
+          </div>
+          
+      <table class="country-card">
+        <thead>
+          <td>Name</td>
+          <td>Region</td>
+          <td>Population</td>
+          <td>Action</td>
+          <td>Favourites</td>
+          <td>Flag</td>
+        </thead>
+        <tbody>
+         
+          
+          
+          <tr *ngFor="let country of countries">
+        
+            <td>
+              {{ country.name }}
+            </td>
+            <td>
+              {{ country.region }}
+            </td>
+            <td>
+              {{ country.population | number: '1.0' }}
+            </td>
+            <td>
+        
+              <button class="btn btn-success"><a   href="{{country.name}}">View</a> </button>
+              
+        
+            </td>
+            <td>
+              <input
+              class="form-check-input"
+              type="checkbox"
+              [value]= "country.name"
+              
+              [checked]="false"
+              (change)="onChangeCountry($event)"
+              />
+            </td>
+            <td class="country-card-img">
+               <img [src]="country.flag" class="img-size" > 
+            </td>
+            
+        </tr>
+        </tbody>
+        
+          
+        
+        </table>
+          
+      </section>
+    </div>
+  <div class="panel" id="two-panel">
+    <div class="main">
+   
+      <ul class="cards">
+        
+        <li class="cards_item card">
+         
+            <canvas id="my_first_chart"></canvas> 
+          
+        </li>
+       
+        
+       
+      </ul>
+    </div>
+    
+   
+    
+  </div>
+
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div class="country-cards">
+  <app-country-card
+    *ngFor="let country of countries"
+    [country]="country"
+  ></app-country-card>
+</div> -->
